@@ -11,6 +11,7 @@ I dropped title, sig, mmi, cdi, felt, alert and tsunami. title contains the magn
 ## 2. Stream vs batch
 How many events changed (same `id`, newer `updated`) during your stream window? What does that tell you about "latest version wins"?
 
+In my short stream run (about 30 seconds), 13 events were collected. After merging them with the weekly data, 8 events had the same id but a newer updated time. This means USGS changes events after the first report. So we keep only the latest version of each event, otherwise we would use old and wrong values.
 
 ## 3. Outliers
 Your decision on negative depth and negative magnitude, with reasoning.
@@ -20,4 +21,6 @@ Outliers: I ran iqr_outlier_mask on depth_km and mag. Out of 1814 earthquakes, i
 
 ## 4. Cardinality
 You grouped `region` to top-k. Name one alternative encoding and one risk it carries.
+
+One other way is target encoding: we replace each region with the average big_quake rate of that region. The risk is data leakage, because the encoding uses the target. If we calculate it before the split, the model sees the answer. So it must be fitted on the train set only.
 
