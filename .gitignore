@@ -4,3 +4,4 @@ venv/
 *.pyc
 data/stream/*.jsonl
 data/processed/
+logs/
