@@ -1,0 +1,8 @@
+__pycache__/
+venv/
+.env
+*.pyc
+data/stream/*.jsonl
+data/processed/
+logs/
+models/*.joblib
